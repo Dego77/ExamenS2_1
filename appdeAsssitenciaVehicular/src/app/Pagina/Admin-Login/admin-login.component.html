@@ -1,0 +1,100 @@
+<header class="navbar">
+  <div class="brand">
+    <div class="logo-box">📞</div>
+    <div>
+      <h2>EmergAuto</h2>
+      <p>Asistencia 24/7</p>
+    </div>
+  </div>
+
+  <nav class="nav-links">
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/">Servicios</a>
+    <a routerLink="/">Presupuesto</a>
+    <a routerLink="/">Contacto</a>
+  </nav>
+
+  <div class="nav-actions">
+    <span class="phone">📞 900 000 000</span>
+    <a routerLink="/login" class="btn-outline nav-login">Acceder</a>
+  </div>
+</header>
+
+<section class="auth-page">
+  <div class="auth-top">
+    <div class="auth-logo">🛡️</div>
+    <h1>Acceso Administrativo</h1>
+    <p>Ingresa con tu cuenta de administrador</p>
+  </div>
+
+  <div class="auth-card admin-card">
+    <form class="auth-form" (ngSubmit)="iniciarSesionAdmin()">
+      <label>Email</label>
+      <input
+        type="email"
+        [(ngModel)]="adminData.email"
+        name="adminEmail"
+        required
+      />
+
+      <label>Contraseña</label>
+       <input
+        type="password"
+        [(ngModel)]="adminData.password"
+        name="adminPassword"
+        required
+/>
+
+      <button type="submit" class="btn-dark full">
+        Iniciar Sesión
+      </button>
+
+      <div class="admin-note">
+        <p>Solo usuarios administrativos autorizados</p>
+        <a routerLink="/login" class="back-link">← Volver al acceso de clientes</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-col">
+    <div class="brand footer-brand">
+      <div class="logo-box">📞</div>
+      <div>
+        <h2>EmergAuto</h2>
+        <p>Asistencia 24/7</p>
+      </div>
+    </div>
+
+    <p>
+      Plataforma inteligente de asistencia de emergencia vehicular.
+      Servicio disponible las 24 horas del día, todos los días del año.
+    </p>
+  </div>
+
+  <div class="footer-col">
+    <h4>Enlaces Rápidos</h4>
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/">Servicios</a>
+    <a routerLink="/">Solicitar Presupuesto</a>
+    <a routerLink="/">Contacto</a>
+  </div>
+
+  <div class="footer-col">
+    <h4>Nuestros Servicios</h4>
+    <a href="#">Asistencia en Carretera</a>
+    <a href="#">Grúa y Remolque</a>
+    <a href="#">Cambio de Neumático</a>
+    <a href="#">Carga de Batería</a>
+    <a href="#">Apertura de Vehículos</a>
+  </div>
+
+  <div class="footer-col">
+    <h4>Contacto</h4>
+    <p>📞 Emergencias 24/7</p>
+    <p>900 000 000</p>
+    <p>✉️ info&#64;emergauto.com</p>
+    <p>📍 Santa Cruz, Bolivia</p>
+  </div>
+</footer>

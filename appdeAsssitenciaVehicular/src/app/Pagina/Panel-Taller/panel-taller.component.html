@@ -1,0 +1,253 @@
+<div class="taller-layout">
+  <aside class="sidebar">
+    <div>
+      <div class="brand">
+        <div class="logo-box">🔧</div>
+        <div>
+          <h2>EmergAuto</h2>
+          <p>Área Taller</p>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <a
+          (click)="setMenu('dashboard')"
+          [class.active]="selectedMenu === 'dashboard'">
+          Dashboard
+        </a>
+
+        <a
+          (click)="setMenu('solicitudes')"
+          [class.active]="selectedMenu === 'solicitudes'">
+          Solicitudes
+        </a>
+
+        <a
+          (click)="setMenu('historial')"
+          [class.active]="selectedMenu === 'historial'">
+          Historial
+        </a>
+
+        <a
+          (click)="mostrarPerfil()"
+          [class.active]="selectedMenu === 'perfil'">
+          Mi Perfil
+        </a>
+      </nav>
+    </div>
+
+    <div>
+      <div class="profile-box clickable-profile" (click)="mostrarPerfil()">
+        <div class="avatar">{{ taller.nombre.charAt(0).toUpperCase() }}</div>
+        <div>
+          <strong>{{ taller.nombre }}</strong>
+          <p>{{ taller.email }}</p>
+        </div>
+      </div>
+
+      <button class="logout-btn" (click)="cerrarSesion()">
+        Cerrar sesión
+      </button>
+    </div>
+  </aside>
+
+  <main class="content">
+    <section *ngIf="selectedMenu === 'dashboard'">
+      <div class="topbar">
+        <div>
+          <h1>Bienvenido, {{ taller.nombre }}</h1>
+          <p>Gestiona tus servicios y solicitudes asignadas</p>
+        </div>
+        <div class="topbar-right">Taller activo</div>
+      </div>
+
+      <div class="cards">
+        <div class="card" *ngFor="let item of resumen">
+          <div class="card-top">
+            <div>
+              <p class="card-title">{{ item.titulo }}</p>
+              <h3>{{ item.valor }}</h3>
+              <span>{{ item.detalle }}</span>
+            </div>
+            <div class="icon-box">{{ item.icono }}</div>
+          </div>
+        </div>
+      </div>
+
+      <section class="cta-box">
+        <div>
+          <h2>Servicios en tiempo real</h2>
+          <p>Administra rápidamente las solicitudes asignadas a tu taller.</p>
+        </div>
+
+        <div class="cta-actions">
+          <button class="btn-light" (click)="setMenu('solicitudes')">Ver solicitudes</button>
+          <button class="btn-white" (click)="mostrarPerfil()">Ver perfil</button>
+        </div>
+      </section>
+
+      <section class="table-box">
+        <div class="table-header">
+          <h2>Solicitudes activas</h2>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Servicio</th>
+              <th>Cliente</th>
+              <th>Ubicación</th>
+              <th>Técnico</th>
+              <th>Estado</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let s of solicitudesActivas">
+              <td>{{ s.servicio }}</td>
+              <td>{{ s.cliente }}</td>
+              <td>{{ s.ubicacion }}</td>
+              <td>{{ s.tecnico }}</td>
+              <td>{{ s.estado }}</td>
+              <td>{{ s.fecha }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <div class="bottom-grid">
+        <section class="panel-box">
+          <h3>Acciones rápidas</h3>
+          <button>Asignar técnico</button>
+          <button>Actualizar estado</button>
+          <button>Registrar servicio</button>
+        </section>
+
+        <section class="panel-box">
+          <h3>Beneficios del taller</h3>
+          <ul>
+            <li>Mayor visibilidad para nuevos clientes</li>
+            <li>Gestión centralizada de solicitudes</li>
+            <li>Historial de servicios y control operativo</li>
+            <li>Seguimiento del desempeño mensual</li>
+          </ul>
+        </section>
+      </div>
+    </section>
+
+    <section *ngIf="selectedMenu === 'solicitudes'">
+      <div class="page-header">
+        <h1>Solicitudes Asignadas</h1>
+        <p>Seguimiento y administración de servicios activos</p>
+      </div>
+
+      <section class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Servicio</th>
+              <th>Cliente</th>
+              <th>Ubicación</th>
+              <th>Técnico</th>
+              <th>Estado</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let s of solicitudesActivas">
+              <td>{{ s.servicio }}</td>
+              <td>{{ s.cliente }}</td>
+              <td>{{ s.ubicacion }}</td>
+              <td>{{ s.tecnico }}</td>
+              <td>{{ s.estado }}</td>
+              <td>{{ s.fecha }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+
+    <section *ngIf="selectedMenu === 'historial'">
+      <div class="page-header">
+        <h1>Historial de Servicios</h1>
+        <p>Resumen de servicios completados por el taller</p>
+      </div>
+
+      <section class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Servicio</th>
+              <th>Cliente</th>
+              <th>Estado</th>
+              <th>Monto</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let h of historial">
+              <td>{{ h.servicio }}</td>
+              <td>{{ h.cliente }}</td>
+              <td>{{ h.estado }}</td>
+              <td>{{ h.monto }}</td>
+              <td>{{ h.fecha }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+
+    <section *ngIf="selectedMenu === 'perfil'">
+      <div class="page-header">
+        <h1>Perfil del Taller</h1>
+        <p>Información principal del taller registrado</p>
+      </div>
+
+      <section class="table-box perfil-box">
+        <div class="perfil-header">
+          <div class="perfil-avatar">{{ taller.nombre.charAt(0).toUpperCase() }}</div>
+
+          <div class="perfil-grid">
+            <div>
+              <h4>Nombre del Taller</h4>
+              <p>{{ perfilTaller.nombre }}</p>
+            </div>
+
+            <div>
+              <h4>Encargado</h4>
+              <p>{{ perfilTaller.encargado }}</p>
+            </div>
+
+            <div>
+              <h4>Email</h4>
+              <p>{{ perfilTaller.email }}</p>
+            </div>
+
+            <div>
+              <h4>Teléfono</h4>
+              <p>{{ perfilTaller.telefono }}</p>
+            </div>
+
+            <div>
+              <h4>Dirección</h4>
+              <p>{{ perfilTaller.direccion }}</p>
+            </div>
+
+            <div>
+              <h4>Ciudad</h4>
+              <p>{{ perfilTaller.ciudad }}</p>
+            </div>
+
+            <div>
+              <h4>Especialidad</h4>
+              <p>{{ perfilTaller.especialidad }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+</div>

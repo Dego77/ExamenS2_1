@@ -1,0 +1,208 @@
+<header class="navbar">
+  <div class="brand">
+    <div class="logo-box">📞</div>
+    <div>
+      <h2>EmergAuto</h2>
+      <p>Asistencia 24/7</p>
+    </div>
+  </div>
+
+  <nav class="nav-links">
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/">Servicios</a>
+    <a routerLink="/">Presupuesto</a>
+    <a routerLink="/">Contacto</a>
+  </nav>
+
+  <div class="nav-actions">
+    <span class="phone">📞 900 000 000</span>
+    <button class="btn-outline">Acceder</button>
+  </div>
+</header>
+
+<section class="auth-page">
+  <div class="auth-top">
+    <div class="auth-logo">📞</div>
+    <h1>EmergAuto</h1>
+    <p>Accede a tu cuenta</p>
+  </div>
+
+  <div class="auth-card">
+    <div class="tabs">
+      <button
+        [class.active]="mode === 'login'"
+        (click)="cambiarModo('login')">
+        Iniciar Sesión
+      </button>
+
+      <button
+        [class.active]="mode === 'register'"
+        (click)="cambiarModo('register')">
+        Registrarse
+      </button>
+    </div>
+
+    @if (mode === 'login') {
+      <form class="auth-form" (ngSubmit)="iniciarSesion()">
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder="tu@email.com"
+          [(ngModel)]="loginData.email"
+          name="loginEmail"
+          required
+        />
+
+        <label>Contraseña</label>
+        <input
+          type="password"
+          placeholder="••••••••"
+          [(ngModel)]="loginData.password"
+          name="loginPassword"
+          required
+        />
+
+        <div class="form-row">
+          <label class="check">
+            <input
+              type="checkbox"
+              [(ngModel)]="loginData.remember"
+              name="remember"
+            />
+            Recordarme
+          </label>
+
+          <a href="#" class="link-orange">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <button type="submit" class="btn-dark full">
+          Iniciar Sesión
+        </button>
+
+        <div class="demo-box">
+          <p>Cuentas de prueba:</p>
+          <p><strong>Cliente:</strong> cliente@ejemplo.com</p>
+          <p><strong>Staff:</strong> admin@emergauto.com</p>
+        </div>
+      </form>
+    }
+
+    @if (mode === 'register') {
+      <form class="auth-form" (ngSubmit)="registrarTaller()">
+        <label>Nombre Completo</label>
+        <input
+          type="text"
+          placeholder="Juan García"
+          [(ngModel)]="registerData.nombreCompleto"
+          name="nombreCompleto"
+          required
+        />
+
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder="tu@email.com"
+          [(ngModel)]="registerData.email"
+          name="registerEmail"
+          required
+        />
+
+        <label>Teléfono</label>
+        <input
+          type="text"
+          placeholder="+591 70000000"
+          [(ngModel)]="registerData.telefono"
+          name="telefono"
+          required
+        />
+
+        <label>Contraseña</label>
+        <input
+          type="password"
+          placeholder="••••••••"
+          [(ngModel)]="registerData.password"
+          name="registerPassword"
+          required
+        />
+
+        <label>Confirmar Contraseña</label>
+        <input
+          type="password"
+          placeholder="••••••••"
+          [(ngModel)]="registerData.confirmPassword"
+          name="confirmPassword"
+          required
+        />
+
+        <label class="check terms">
+          <input
+            type="checkbox"
+            [(ngModel)]="registerData.aceptaTerminos"
+            name="aceptaTerminos"
+          />
+          <span>
+            Acepto los <a href="#" class="link-orange">términos y condiciones</a>
+            y la <a href="#" class="link-orange">política de privacidad</a>
+          </span>
+        </label>
+
+        <button type="submit" class="btn-dark full">
+          Crear Cuenta
+        </button>
+      </form>
+    }
+  </div>
+
+  <p class="help-text">
+    ¿Necesitas ayuda?
+    <span>Llámanos al 900 000 000</span>
+  </p>
+</section>
+
+<footer class="footer">
+  <div class="footer-col">
+    <div class="brand footer-brand">
+      <div class="logo-box">📞</div>
+      <div>
+        <h2>EmergAuto</h2>
+        <p>Asistencia 24/7</p>
+      </div>
+    </div>
+
+    <p>
+      Plataforma inteligente de asistencia de emergencia vehicular.
+      Servicio disponible las 24 horas del día, todos los días del año.
+    </p>
+  </div>
+
+  <div class="footer-col">
+    <h4>Enlaces Rápidos</h4>
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/">Servicios</a>
+    <a routerLink="/">Solicitar Presupuesto</a>
+    <a routerLink="/">Contacto</a>
+  </div>
+
+  <div class="footer-col">
+    <h4>Nuestros Servicios</h4>
+    <a href="#">Asistencia en Carretera</a>
+    <a href="#">Grúa y Remolque</a>
+    <a href="#">Cambio de Neumático</a>
+    <a href="#">Carga de Batería</a>
+    <a href="#">Apertura de Vehículos</a>
+  </div>
+
+  <div class="footer-col">
+    <h4>Contacto</h4>
+    <p>📞 Emergencias 24/7</p>
+    <p>900 000 000</p>
+    <p>✉️ info&#64;emergauto.com</p>
+    <p>📍 Santa Cruz, Bolivia</p>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 EmergAuto. Todos los derechos reservados. | Política de Privacidad | Términos y Condiciones</p>
+    <a routerLink="/admin-login" class="admin-access-link">Acceso Administrativo</a>
+  </div>
+
+</footer>

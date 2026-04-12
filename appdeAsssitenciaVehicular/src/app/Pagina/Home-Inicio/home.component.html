@@ -1,0 +1,208 @@
+# barra de navegacion 
+<header class="navbar">
+  <div class="brand">
+    <div class="logo-box">📞</div>
+    <div>
+      <h2>EmergAuto</h2>
+      <p>Asistencia 24/7</p>
+    </div>
+  </div>
+
+  <nav class="nav-links">
+    <a href="#inicio" [class.active]="activeSection === 'inicio'" (click)="setActive('inicio')">Inicio</a>
+    <a href="#servicios" [class.active]="activeSection === 'servicios'" (click)="setActive('servicios')">Servicios</a>
+    <a href="#presupuesto" [class.active]="activeSection === 'presupuesto'" (click)="setActive('presupuesto')">Presupuesto</a>
+    <a href="#contacto" [class.active]="activeSection === 'contacto'" (click)="setActive('contacto')">Contacto</a>
+  </nav>
+
+  <div class="nav-actions">
+    <span class="phone">📞 900 000 000</span>
+    <a routerLink="/login" class="btn-outline">Acceder</a>
+  </div>
+  
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-left">
+    <div class="badge">🕒 Disponible 24 horas, 7 días</div>
+
+    <h1>
+      Asistencia <br />
+      Vehicular de <br />
+      <span>Emergencia</span>
+    </h1>
+
+    <p>
+      Plataforma inteligente de asistencia de emergencia vehicular.
+      Servicio rápido, profesional y disponible las 24 horas del día.
+    </p>
+
+    <div class="hero-buttons">
+      <button class="btn-primary">📞 Solicitar Presupuesto</button>
+      <button class="btn-light">Ver Servicios</button>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="feature-card">
+      <div class="feature-icon">🕒</div>
+      <h3>Respuesta Inmediata</h3>
+      <p>Tiempo medio de llegada menor a 30 minutos</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🛡️</div>
+      <h3>Servicio Garantizado</h3>
+      <p>Profesionales certificados y vehículos equipados</p>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat-item">
+    <h3>15,000+</h3>
+    <p>Clientes Satisfechos</p>
+  </div>
+  <div class="stat-item">
+    <h3>24/7</h3>
+    <p>Disponibilidad</p>
+  </div>
+  <div class="stat-item">
+    <h3>&lt;30min</h3>
+    <p>Tiempo Respuesta</p>
+  </div>
+  <div class="stat-item">
+    <h3>98%</h3>
+    <p>Satisfacción</p>
+  </div>
+</section>
+
+<section class="services-section" id="servicios">
+  <div class="section-header">
+    <h2>Nuestros Servicios</h2>
+    <p>Soluciones completas de asistencia vehicular para cualquier emergencia</p>
+  </div>
+
+  <div class="services-grid">
+    @for (servicio of servicios; track servicio.titulo) {
+      <article class="service-card">
+        <div class="service-icon">{{ servicio.icono }}</div>
+        <h3>{{ servicio.titulo }}</h3>
+        <p>{{ servicio.descripcion }}</p>
+      </article>
+    }
+  </div>
+
+  <div class="center-btn">
+    <button class="btn-outline dark">Ver Todos los Servicios →</button>
+  </div>
+</section>
+
+<section class="why-section">
+  <div class="why-left">
+    <h2>¿Por Qué Elegir EmergAuto?</h2>
+
+    <ul>
+      @for (item of beneficios; track item) {
+        <li>✅ {{ item }}</li>
+      }
+    </ul>
+  </div>
+
+  <div class="why-right">
+    <div class="mini-card">
+      <div class="mini-icon">📍</div>
+      <div>
+        <h4>Cobertura Nacional</h4>
+        <p>Servicio en toda la ciudad</p>
+      </div>
+    </div>
+
+    <div class="mini-card">
+      <div class="mini-icon">🕒</div>
+      <div>
+        <h4>Respuesta Rápida</h4>
+        <p>Llegamos en menos de 30 min</p>
+      </div>
+    </div>
+
+    <div class="mini-card">
+      <div class="mini-icon">🛡️</div>
+      <div>
+        <h4>Seguridad Total</h4>
+        <p>Atención confiable y profesional</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials-section">
+  <div class="section-header">
+    <h2>Lo Que Dicen Nuestros Clientes</h2>
+    <p>Miles de clientes satisfechos confían en nosotros</p>
+  </div>
+
+  <div class="testimonials-grid">
+    @for (testimonio of testimonios; track testimonio.nombre) {
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">“{{ testimonio.texto }}”</p>
+        <h4>{{ testimonio.nombre }}</h4>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="cta-section" id="presupuesto">
+  <h2>¿Necesitas Asistencia de Emergencia?</h2>
+  <p>
+    Solicita tu presupuesto personalizado sin compromiso o llámanos directamente
+    para emergencias
+  </p>
+
+  <div class="cta-buttons">
+    <button class="btn-light strong">Solicitar Presupuesto Gratis →</button>
+    <button class="btn-light">Llamar Ahora</button>
+  </div>
+</section>
+
+<footer class="footer" id="contacto">
+  <div class="footer-col">
+    <div class="brand footer-brand">
+      <div class="logo-box">📞</div>
+      <div>
+        <h2>EmergAuto</h2>
+        <p>Asistencia 24/7</p>
+      </div>
+    </div>
+
+    <p>
+      Plataforma inteligente de asistencia de emergencia vehicular.
+      Servicio disponible las 24 horas del día, todos los días del año.
+    </p>
+  </div>
+
+  <div class="footer-col">
+    <h4>Enlaces Rápidos</h4>
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#presupuesto">Solicitar Presupuesto</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+
+  <div class="footer-col">
+    <h4>Nuestros Servicios</h4>
+    <a href="#servicios">Asistencia en Carretera</a>
+    <a href="#servicios">Grúa y Remolque</a>
+    <a href="#servicios">Cambio de Neumático</a>
+    <a href="#servicios">Carga de Batería</a>
+  </div>
+
+  <div class="footer-col">
+    <h4>Contacto</h4>
+    <p>📞 Emergencias 24/7</p>
+    <p>900 000 000</p>
+    <p>✉️ info&#64;emergauto.com</p>
+    <p>📍 Santa Cruz, Bolivia</p>
+  </div>
+</footer>

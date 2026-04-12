@@ -1,0 +1,175 @@
+<div class="admin-layout">
+  <aside class="sidebar">
+    <div>
+      <div class="brand">
+        <div class="logo-box">📞</div>
+        <div>
+          <h2>EmergAuto</h2>
+          <p>Panel Admin</p>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <a
+          (click)="setMenu('dashboard')"
+          [class.active]="selectedMenu === 'dashboard'">
+          Dashboard
+        </a>
+
+        <a
+          (click)="mostrarPerfil()"
+          [class.active]="selectedMenu === 'perfil'">
+          Mi Perfil
+        </a>
+      </nav>
+    </div>
+
+    <div>
+      <div class="profile-box clickable-profile" (click)="mostrarPerfil()">
+        <div class="avatar">{{ admin.nombre.charAt(0).toUpperCase() }}</div>
+        <div>
+          <strong>{{ admin.nombre }}</strong>
+          <p>Administrador</p>
+        </div>
+      </div>
+
+      <button class="logout-btn" (click)="cerrarSesion()">
+        Cerrar sesión
+      </button>
+    </div>
+  </aside>
+
+  <main class="content">
+    <section *ngIf="selectedMenu === 'dashboard'">
+      <div class="topbar">
+        <div>
+          <h1>Bienvenido, {{ admin.nombre }}</h1>
+          <p>Gestiona tu sistema desde el panel administrativo</p>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card" *ngFor="let item of resumen">
+          <div class="card-top">
+            <div>
+              <p class="card-title">{{ item.titulo }}</p>
+              <h3>{{ item.valor }}</h3>
+              <span>{{ item.detalle }}</span>
+            </div>
+            <div class="icon-box">{{ item.icono }}</div>
+          </div>
+        </div>
+      </div>
+
+      <section class="table-box">
+        <h2>Solicitudes recientes</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Servicio</th>
+              <th>Usuario</th>
+              <th>Taller</th>
+              <th>Estado</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let s of solicitudesRecientes">
+              <td>{{ s.servicio }}</td>
+              <td>{{ s.usuario }}</td>
+              <td>{{ s.taller }}</td>
+              <td>{{ s.estado }}</td>
+              <td>{{ s.fecha }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+
+    <section *ngIf="selectedMenu === 'perfil'">
+      <div class="page-header">
+        <h1>Mi Perfil</h1>
+        <p>Gestiona tu información personal y preferencias administrativas</p>
+      </div>
+
+      <section class="table-box perfil-box">
+        <div class="perfil-header">
+          <div class="perfil-avatar">A</div>
+
+          <div class="perfil-grid">
+            <div>
+              <h4>Nombre</h4>
+              <p>{{ adminPerfil.nombre }}</p>
+            </div>
+
+            <div>
+              <h4>Apellidos</h4>
+              <p>{{ adminPerfil.apellidos }}</p>
+            </div>
+
+            <div>
+              <h4>Email</h4>
+              <p>{{ adminPerfil.email }}</p>
+            </div>
+
+            <div>
+              <h4>Teléfono</h4>
+              <p>{{ adminPerfil.telefono }}</p>
+            </div>
+
+            <div>
+              <h4>Dirección</h4>
+              <p>{{ adminPerfil.direccion }}</p>
+            </div>
+
+            <div>
+              <h4>Ciudad</h4>
+              <p>{{ adminPerfil.ciudad }}</p>
+            </div>
+
+            <div>
+              <h4>Cargo</h4>
+              <p>{{ adminPerfil.cargo }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="perfil-actions">
+          <button class="btn-outline">Editar Perfil</button>
+        </div>
+      </section>
+
+      <section class="table-box config-box">
+        <h2>Configuración de Cuenta</h2>
+
+        <div class="config-item">
+          <div>
+            <h3>Notificaciones por Email</h3>
+            <p>Recibe actualizaciones sobre el sistema y actividades administrativas</p>
+          </div>
+          <input type="checkbox" [checked]="configuracion.email">
+        </div>
+
+        <div class="config-item">
+          <div>
+            <h3>Notificaciones por SMS</h3>
+            <p>Alertas de emergencia y avisos importantes del sistema</p>
+          </div>
+          <input type="checkbox" [checked]="configuracion.sms">
+        </div>
+
+        <div class="config-item">
+          <div>
+            <h3>Reportes Automáticos</h3>
+            <p>Recibe reportes semanales del panel administrativo</p>
+          </div>
+          <input type="checkbox" [checked]="configuracion.reportes">
+        </div>
+
+        <button class="btn-danger">Cambiar Contraseña</button>
+      </section>
+    </section>
+  </main>
+</div>
